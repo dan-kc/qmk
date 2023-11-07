@@ -21,6 +21,11 @@
 #    define DYNAMIC_KEYMAP_LAYER_COUNT 7
 #endif // VIA_ENABLE
 
+/* TAPPING_TERM 200 */
+
+#define BOOTMAGIC_LITE_ROW_RIGHT 4
+#define BOOTMAGIC_LITE_COLUMN_RIGHT 4
+
 #ifndef __arm__
 /* Disable unused features. */
 #    define NO_ACTION_ONESHOT
