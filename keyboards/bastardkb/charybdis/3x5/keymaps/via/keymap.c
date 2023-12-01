@@ -11,34 +11,16 @@ void matrix_scan_user(void) {
     achordion_task();
 }
 
-#ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-#    include "timer.h"
-#endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-
 enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, LAYER_SYMBOLS, LAYER_WEIRD, LAYER_MEDIA };
 
 #define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_NAVIGATION
-
-#ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-static uint16_t auto_pointer_layer_timer = 0;
-
-#    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS
-#        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS 1000
-#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS
-
-#    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
-#        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD 8
-#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
-#endif     // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
 #define ESC_NUM LT(LAYER_NUMERAL, KC_ESC)
 #define SPC_NAV LT(LAYER_NAVIGATION, KC_SPC)
 #define TAB_SFT LSFT_T(KC_TAB)
 #define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
-
 #define KC_BRTU LSFT(LALT(LGUI(KC_COMM)))
 #define KC_BRTD LSFT(LALT(LGUI(KC_DOT)))
-
 #define HASH LALT(KC_3)
 #define POUND KC_HASH
 
@@ -53,24 +35,24 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_BASE                                                                     \
        KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT, \
        KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I, KC_O,    \
-       KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, \
+       LGUI_T(KC_Z),LALT_T(KC_X),LCTL_T(KC_C),LSFT_T(KC_D),KC_V, KC_K,RSFT_T(KC_H), RCTL_T(KC_COMM),LALT_T(KC_DOT), RGUI_T(KC_SLSH), \
                       ESC_NUM, SPC_NAV,TAB_SFT,ENT_SYM,KC_BSPC
 
 #define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define ______________HOME_ROW_GACS_L______________ KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX
-#define ______________HOME_ROW_GACS_R______________ XXXXXXX, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI
+#define ______________MOD_ROW_GACS_L______________ KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX
+#define ______________MOD_ROW_GACS_R______________ XXXXXXX, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI
 
 #define LAYOUT_LAYER_NUMERAL                                                                  \
     _______________DEAD_HALF_ROW_______________,   XXXXXXX,    KC_7,    KC_8,    KC_9, XXXXXXX,  \
-    ______________HOME_ROW_GACS_L______________,   XXXXXXX,    KC_4,    KC_5,    KC_6, XXXXXXX, \
-    _______________DEAD_HALF_ROW_______________,   KC_0,       KC_1,    KC_2,    KC_3, XXXXXXX, \
+    _______________DEAD_HALF_ROW_______________,   XXXXXXX,    KC_4,    KC_5,    KC_6, XXXXXXX, \
+    ______________MOD_ROW_GACS_L______________,   KC_0,       KC_1,    KC_2,    KC_3, XXXXXXX, \
                       ESC_NUM, SPC_NAV,TAB_SFT,ENT_SYM,KC_BSPC
 
 
 #define LAYOUT_LAYER_NAVIGATION                                                               \
     _______________DEAD_HALF_ROW_______________,   KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, \
-    ______________HOME_ROW_GACS_L______________,   KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
-    _______________DEAD_HALF_ROW_______________,   XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, DRGSCRL, \
+    _______________DEAD_HALF_ROW_______________,   KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
+    ______________MOD_ROW_GACS_L______________,   XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, DRGSCRL, \
                       ESC_NUM, SPC_NAV,TAB_SFT,ENT_SYM,KC_BSPC
 
 #define LAYOUT_LAYER_SYMBOLS                                                                  \
@@ -88,24 +70,13 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 #define LAYOUT_LAYER_WEIRD                                                               \
      XXXXXXX, XXXXXXX, XXXXXXX, KC_CIRC, XXXXXXX,_______________DEAD_HALF_ROW_______________, \
-     KC_DLR,  KC_AT,   KC_ASTR, KC_AMPR, XXXXXXX,  ______________HOME_ROW_GACS_R______________, \
-     POUND,   KC_TILD, KC_PERC, HASH, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
+     KC_DLR,  KC_AT,   KC_ASTR, KC_AMPR, XXXXXXX, _______________DEAD_HALF_ROW_______________ , \
+     POUND,   KC_TILD, KC_PERC, HASH, XXXXXXX, ______________MOD_ROW_GACS_R______________, \
                       ESC_NUM, SPC_NAV,TAB_SFT,ENT_SYM,KC_BSPC
 
-#define _HOME_ROW_MOD_GACS(                                            \
-    L00, L01, L02, L03, L04, R05, R06, R07, R08, R09,                  \
-    L10, L11, L12, L13, L14, R15, R16, R17, R18, R19,                  \
-    ...)                                                               \
-             L00,         L01,         L02,         L03,         L04,  \
-             R05,         R06,         R07,         R08,         R09,  \
-      LGUI_T(L10), LALT_T(L11), LCTL_T(L12), LSFT_T(L13),        L14,  \
-             R15,  RSFT_T(R16), RCTL_T(R17), LALT_T(R18), RGUI_T(R19), \
-      __VA_ARGS__
-#define HOME_ROW_MOD_GACS(...) _HOME_ROW_MOD_GACS(__VA_ARGS__)
 #define LAYOUT_wrapper(...) LAYOUT_charybdis_3x5(__VA_ARGS__)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [LAYER_BASE] = LAYOUT_wrapper(HOME_ROW_MOD_GACS(LAYOUT_LAYER_BASE)),
+  [LAYER_BASE] = LAYOUT_wrapper(LAYOUT_LAYER_BASE),
   [LAYER_NUMERAL] = LAYOUT_wrapper(LAYOUT_LAYER_NUMERAL),
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
   [LAYER_SYMBOLS] = LAYOUT_wrapper(LAYOUT_LAYER_SYMBOLS),
@@ -187,18 +158,19 @@ bool is_thumb(uint16_t keycode) {
     return false;
 }
 
+// Allow same hand cords for MOD keys + thumb
 bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, uint16_t other_keycode, keyrecord_t* other_record) {
     // Exceptionally consider the following chords as holds, even though they
     // are on the same hand in Colemak.
     switch (tap_hold_keycode) {
-        case LGUI_T(KC_A):
-        case LALT_T(KC_R):
-        case LCTL_T(KC_S):
-        case LSFT_T(KC_T):
-        case RGUI_T(KC_O):
-        case LALT_T(KC_I):
-        case RCTL_T(KC_E):
-        case RSFT_T(KC_N):
+        case LGUI_T(KC_Z):
+        case LALT_T(KC_X):
+        case LCTL_T(KC_C):
+        case LSFT_T(KC_D):
+        case RGUI_T(KC_SLSH):
+        case LALT_T(KC_DOT):
+        case RCTL_T(KC_COMM):
+        case RSFT_T(KC_H):
             if (is_thumb(other_keycode)) {
                 return true;
             }
@@ -218,5 +190,5 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
             return 0; // Bypass Achordion for these keys.
     }
 
-    return 800; // Otherwise use a timeout of 800 ms.
+    return 500;
 }
