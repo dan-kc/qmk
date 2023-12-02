@@ -175,6 +175,12 @@ bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, ui
                 return true;
             }
             break;
+            // case ESC_NUM:
+            // case SPC_NAV:
+            // case ENT_SYM:
+            // case TAB_SFT:
+            //     return false;
+            // break;
     }
 
     // Otherwise, follow the opposite hands rule.
@@ -193,16 +199,14 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
     return 500;
 }
 
-bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t* record) {
-    switch (keycode) {
-        case ESC_NUM:
-        case SPC_NAV:
-        case ENT_SYM:
-        case TAB_SFT:
-            // Immediately select the hold action when another key is pressed.
-            return true;
-        default:
-            // Do not select the hold action when another key is pressed.
-            return false;
-    }
-}
+// bool get_permissive_hold(uint16_t keycode, keyrecord_t* record) {
+//     switch (keycode) {
+//         case ESC_NUM:
+//         case SPC_NAV:
+//         case ENT_SYM:
+//         case TAB_SFT:
+//             return false;
+//         default:
+//             return true;
+//     }
+// }
