@@ -1,35 +1,13 @@
 #include QMK_KEYBOARD_H
-#include "features/achordion.h"
 
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    if (!process_achordion(keycode, record)) {
-        return false;
-    }
-    return true;
-}
-
-// bool get_permissive_hold(uint16_t keycode, keyrecord_t* record) {
-//     switch (keycode) {
-//         case LT(1, KC_BSPC):
-//             // Immediately select the hold action when another key is tapped.
-//             return true;
-//         default:
-//             // Do not select the hold action when another key is tapped.
-//             return false;
-//     }
-// }
-
-void matrix_scan_user(void) {
-    achordion_task();
-}
-
-enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, LAYER_SYMBOLS, LAYER_WEIRD, LAYER_MEDIA };
-
+enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, LAYER_SYMBOLS, LAYER_MEDIA };
 #define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_NAVIGATION
 
 #define SPC_NAV LT(LAYER_NAVIGATION, KC_SPC)
-#define NUM MO(LAYER_NUMERAL)
+#define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
+// #define ESC_NUM LT(LAYER_NUMERAL, KC_ESC)
 #define SYM MO(LAYER_SYMBOLS)
+#define NUM MO(LAYER_NUMERAL)
 #define KC_BRTU LSFT(LALT(LGUI(KC_COMM)))
 #define KC_BRTD LSFT(LALT(LGUI(KC_DOT)))
 #define HASH LALT(KC_3)
@@ -41,18 +19,13 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
 #    define S_D_MOD KC_NO
 #    define SNIPING KC_NO
 #endif // !POINTING_DEVICE_ENABLE
-// clang-format off
-// #define LAYOUT_LAYER_BASE                                                                     \
-//        KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT, \
-//        KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I, KC_O,    \
-//        LGUI_T(KC_Z),LALT_T(KC_X),LCTL_T(KC_C),LSFT_T(KC_D),KC_V, KC_K,RSFT_T(KC_H), RCTL_T(KC_COMM),LALT_T(KC_DOT), RGUI_T(KC_SLSH), \
-//                       NUM, SPC_NAV,KC_LSFT,SYM,KC_BSPC
 
+// clang-format off
 #define LAYOUT_LAYER_BASE                                                                     \
-       KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT, \
-       LGUI_T(KC_A),LALT_T(KC_R),LCTL_T(KC_S),LSFT_T(KC_T), KC_G, KC_M,  RSFT_T(KC_N), RCTL_T(KC_E),LALT_T(KC_I), RGUI_T(KC_O),    \
-       KC_Z,KC_X,KC_C,KC_D,KC_V, KC_K,           KC_H, KC_COMM,KC_DOT,KC_SLSH, \
-                      NUM, SPC_NAV,KC_LSFT,SYM,KC_BSPC
+       KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_ESC, \
+       KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,  KC_N, KC_E,KC_I, KC_O,    \
+       LGUI_T(KC_Z),LALT_T(KC_X),LCTL_T(KC_C),LSFT_T(KC_D),KC_V, KC_K,RSFT_T(KC_H), RCTL_T(KC_COMM),LALT_T(KC_SLSH), RGUI_T(KC_SLSH), \
+                      NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
 
 #define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 #define ______________MOD_ROW_GACS_L______________ KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX
@@ -62,33 +35,26 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
     _______________DEAD_HALF_ROW_______________,   XXXXXXX,    KC_7,    KC_8,    KC_9, XXXXXXX,  \
     _______________DEAD_HALF_ROW_______________,   XXXXXXX,    KC_4,    KC_5,    KC_6, XXXXXXX, \
     ______________MOD_ROW_GACS_L______________,   KC_0,       KC_1,    KC_2,    KC_3, XXXXXXX, \
-                      NUM, SPC_NAV,KC_LSFT,SYM,KC_BSPC
+                      NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
 
 
 #define LAYOUT_LAYER_NAVIGATION                                                               \
     _______________DEAD_HALF_ROW_______________,   KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, \
     _______________DEAD_HALF_ROW_______________,   KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
     ______________MOD_ROW_GACS_L______________,   XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, DRGSCRL, \
-                      NUM, SPC_NAV,KC_LSFT,SYM,KC_BSPC
+                      NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
 
 #define LAYOUT_LAYER_SYMBOLS                                                                  \
-    _______________DEAD_HALF_ROW_______________,   XXXXXXX, KC_PLUS, KC_GRV, KC_DQT, XXXXXXX, \
-    KC_LCBR,  KC_RCBR, KC_LPRN, KC_RPRN, XXXXXXX,  KC_EQL, KC_MINS, KC_COLON, KC_EXLM, KC_PIPE,    \
-    KC_LABK, KC_RABK,  KC_LBRC, KC_RBRC, XXXXXXX,  XXXXXXX, KC_UNDS, KC_SCLN, KC_QUES, KC_BSLS, \
-                      NUM, SPC_NAV,KC_LSFT,SYM,KC_BSPC
+    KC_DLR, POUND, KC_AMPR, KC_ASTR, KC_CIRC,      KC_PERC, KC_PLUS, KC_GRV, KC_DQT, KC_QUOT, \
+    KC_LCBR,  KC_RCBR, KC_LPRN, KC_RPRN, KC_AT,  KC_EQL, KC_MINS, KC_COLON, KC_EXLM, KC_PIPE,    \
+    LGUI_T(KC_LABK), LALT_T(KC_RABK),  LCTL_T(KC_LBRC), LSFT_T(KC_RBRC), KC_TILD,  HASH, LSFT_T(KC_UNDS), LCTL_T(KC_SCLN), LALT_T(KC_SCLN), LGUI_T(KC_BSLS), \
+                      NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
 
 #define LAYOUT_LAYER_MEDIA                                                                  \
      XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
      KC_MPRV,  KC_MSTP, KC_MPLY, KC_MNXT, XXXXXXX,_______________DEAD_HALF_ROW_______________, \
      QK_BOOT , EE_CLR, KC_BRTD, KC_BRTU , XXXXXXX,_______________DEAD_HALF_ROW_______________, \
-                      NUM, SPC_NAV,KC_LSFT,SYM,KC_BSPC
-
-
-#define LAYOUT_LAYER_WEIRD                                                               \
-     XXXXXXX, XXXXXXX, XXXXXXX, KC_CIRC, XXXXXXX,_______________DEAD_HALF_ROW_______________, \
-     KC_DLR,  KC_AT,   KC_ASTR, KC_AMPR, XXXXXXX, _______________DEAD_HALF_ROW_______________ , \
-     POUND,   KC_TILD, KC_PERC, HASH, XXXXXXX, ______________MOD_ROW_GACS_R______________, \
-                      NUM, SPC_NAV,KC_LSFT,SYM,KC_BSPC
+                      NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
 
 #define LAYOUT_wrapper(...) LAYOUT_charybdis_3x5(__VA_ARGS__)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -96,11 +62,74 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_NUMERAL] = LAYOUT_wrapper(LAYOUT_LAYER_NUMERAL),
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
   [LAYER_SYMBOLS] = LAYOUT_wrapper(LAYOUT_LAYER_SYMBOLS),
-  [LAYER_WEIRD] = LAYOUT_wrapper(LAYOUT_LAYER_WEIRD),
   [LAYER_MEDIA] = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
 };
 // clang-format on
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // FIX: dot was registering as ">"
+        case LALT_T(KC_SLSH):
+            ............
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_DOT);
+                return false;
+            }
+            break;
+
+        case LGUI_T(KC_LABK):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_LABK);
+                return false;
+            }
+            break;
+        case LALT_T(KC_RABK):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_RABK);
+                return false;
+            }
+            break;
+        case LCTL_T(KC_LBRC):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_LBRC);
+                return false;
+            }
+            break;
+        case LSFT_T(KC_RBRC):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_RBRC);
+                return false;
+            }
+            break;
+
+        case LSFT_T(KC_UNDS):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_UNDS);
+                return false;
+            }
+            break;
+        case LCTL_T(KC_SCLN):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_SCLN);
+                return false;
+            }
+            break;
+        case LALT_T(KC_SCLN):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_QUES);
+                return false;
+            }
+            break;
+        case LGUI_T(KC_BSLS):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_BSLS);
+                return false;
+            }
+            break;
+    }
+    return true;
+}
+// Pointing layer stuff
 #ifdef POINTING_DEVICE_ENABLE
 #    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
@@ -116,7 +145,6 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     }
     return mouse_report;
 }
-
 void matrix_scan_user(void) {
     if (auto_pointer_layer_timer != 0 && TIMER_DIFF_16(timer_read(), auto_pointer_layer_timer) >= CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS) {
         auto_pointer_layer_timer = 0;
@@ -127,91 +155,24 @@ void matrix_scan_user(void) {
     }
 }
 #    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-
 #    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
 layer_state_t layer_state_set_user(layer_state_t state) {
-    state = update_tri_layer_state(state, LAYER_NUMERAL, LAYER_SYMBOLS, LAYER_WEIRD);
-    state = update_tri_layer_state(state, LAYER_NAVIGATION, LAYER_SYMBOLS, LAYER_MEDIA);
+    state = update_tri_layer_state(state, LAYER_NUMERAL, LAYER_SYMBOLS, LAYER_MEDIA);
+    // Setup tri layer
     charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER));
     return state;
 }
 #    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
 #endif     // POINTING_DEVICE_ENABLE
 
-#ifdef RGB_MATRIX_ENABLE
-// Forward-declare this helper function since it is defined in
-// rgb_matrix.c.
-void rgb_matrix_update_pwm_buffers(void);
-#endif
-
-void shutdown_user(void) {
-#ifdef RGBLIGHT_ENABLE
-    rgblight_enable_noeeprom();
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-    rgblight_setrgb(RGB_RED);
-#endif // RGBLIGHT_ENABLE
-#ifdef RGB_MATRIX_ENABLE
-    rgb_matrix_set_color_all(RGB_RED);
-    rgb_matrix_update_pwm_buffers();
-#endif // RGB_MATRIX_ENABLE
-}
-
-bool is_thumb_or_combo(uint16_t keycode) {
-    switch (keycode) {
-        case SPC_NAV:
-            return true;
-            break;
-        case KC_ENT:
-            return true;
-            break;
-    }
-    return false;
-}
-
 // RHS
-const uint16_t PROGMEM H_COMM[]   = {KC_H, KC_COMM, COMBO_END};
-const uint16_t PROGMEM COMM_DOT[] = {KC_COMM, KC_DOT, COMBO_END};
-const uint16_t PROGMEM DOT_SLSH[] = {KC_DOT, KC_SLSH, COMBO_END};
+const uint16_t PROGMEM L_U[] = {KC_L, KC_U, COMBO_END};
+const uint16_t PROGMEM U_Y[] = {KC_U, KC_Y, COMBO_END};
 
 // LHS
-const uint16_t PROGMEM KC_X_C[]     = {KC_X, KC_C, COMBO_END};
-combo_t                key_combos[] = {
-    COMBO(H_COMM, KC_TAB), COMBO(COMM_DOT, KC_ENT), COMBO(DOT_SLSH, KC_DEL), COMBO(KC_X_C, KC_ESC), // keycodes with modifiers are possible too!
-};
-// Allow same hand cords for MOD keys + thumb
-bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, uint16_t other_keycode, keyrecord_t* other_record) {
-    // Exceptionally consider the following chords as holds, even though they
-    // are on the same hand in Colemak.
-    switch (tap_hold_keycode) {
-        case LGUI_T(KC_A):
-        case LALT_T(KC_R):
-        case LCTL_T(KC_S):
-        case LSFT_T(KC_T):
-        case RGUI_T(KC_O):
-        case LALT_T(KC_I):
-        case RCTL_T(KC_E):
-        case RSFT_T(KC_N):
-            // case LGUI_T(KC_Z):
-            // case LALT_T(KC_X):
-            // case LCTL_T(KC_C):
-            // case KC_LSFT_T(KC_D):
-            // case RGUI_T(KC_SLSH):
-            // case LALT_T(KC_DOT):
-            // case RCTL_T(KC_COMM):
-            // case RSFT_T(KC_H):
-            if (is_thumb_or_combo(other_keycode)) {
-                return true;
-            }
-            break;
-    }
-    // Otherwise, follow the opposite hands rule.
-    return achordion_opposite_hands(tap_hold_record, other_record);
-}
+const uint16_t PROGMEM KC_X_C[] = {KC_X, KC_C, COMBO_END};
 
-uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-    switch (tap_hold_keycode) {
-        case SPC_NAV:
-            return 0; // Bypass Achordion for these keys.
-    }
-    return 500;
-}
+combo_t key_combos[] = {
+    COMBO(L_U, KC_TAB),
+    COMBO(U_Y, KC_DEL),
+};

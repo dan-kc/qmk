@@ -22,9 +22,8 @@
 #endif // VIA_ENABLE
 
 #define QUICK_TAP_TERM 0
-#define TAPPING_TERM 130
-#define PERMISSIVE_HOLD
-// #define PERMISSIVE_HOLD_PER_KEY
+#define TAPPING_TERM 190 // lower => more holds
+#define PERMISSIVE_HOLD // immediately outputs hold if another key is tapped
 #define COMBO_TERM 20
 #define CHARYBDIS_MINIMUM_DEFAULT_DPI 800
 #define BOOTMAGIC_LITE_ROW_RIGHT 4
