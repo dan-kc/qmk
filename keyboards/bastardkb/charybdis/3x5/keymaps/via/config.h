@@ -22,13 +22,14 @@
 #endif // VIA_ENABLE
 
 #define QUICK_TAP_TERM 0
-#define TAPPING_TERM 190 // lower => more holds
+#define TAPPING_TERM 180 // lower => more holds
 #define PERMISSIVE_HOLD // immediately outputs hold if another key is tapped
 #define COMBO_TERM 20
 #define CHARYBDIS_MINIMUM_DEFAULT_DPI 800
 #define BOOTMAGIC_LITE_ROW_RIGHT 4
 #define BOOTMAGIC_LITE_COLUMN_RIGHT 4
 #define CHARYBDIS_MINIMUM_SNIPING_DPI 500
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 
 #ifndef __arm__
 /* Disable unused features. */
