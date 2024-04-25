@@ -30,6 +30,7 @@
 #define BOOTMAGIC_LITE_COLUMN_RIGHT 4
 #define CHARYBDIS_MINIMUM_SNIPING_DPI 500
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
+// #define NO_ALT_REPEAT_KEY
 
 #ifndef __arm__
 /* Disable unused features. */

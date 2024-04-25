@@ -8,7 +8,7 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
 #define SPC_NAV LT(LAYER_NAVIGATION, KC_SPC)
 #define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
 #define ESC_NUM LT(LAYER_NUMERAL, KC_ESC)
-#define SYM MO(LAYER_SYMBOLS)
+#define REP_SFT LSFT_T(KC_SPC)
 
 // Base layer row mods
 #define HOME_Z LGUI_T(KC_Z)
@@ -45,10 +45,10 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
 
 // clang-format off
 #define LAYOUT_LAYER_BASE                                                                     \
-       KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT, \
+       KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, XXXXXXX, \
        KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,  KC_N, KC_E,KC_I, KC_O,    \
        HOME_Z,HOME_X,HOME_C,HOME_D,KC_V,   KC_K ,   HOME_H, HOME_COMM ,HOME_DOT, HOME_SLSH, \
-                      ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
+                      ESC_NUM, SPC_NAV,REP_SFT,ENT_SYM,KC_BSPC
 
 #define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 #define ______________MOD_ROW_GACS_L______________ KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX
@@ -58,26 +58,26 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
     _______________DEAD_HALF_ROW_______________,   XXXXXXX,    KC_7,    KC_8,    KC_9, XXXXXXX,  \
     _______________DEAD_HALF_ROW_______________,   XXXXXXX,    KC_4,    KC_5,    KC_6, XXXXXXX, \
     ______________MOD_ROW_GACS_L______________,   KC_0,       KC_1,    KC_2,    KC_3, XXXXXXX, \
-                      ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
+                      ESC_NUM, SPC_NAV,REP_SFT,ENT_SYM,KC_BSPC
 
 
 #define LAYOUT_LAYER_NAVIGATION                                                               \
     _______________DEAD_HALF_ROW_______________,   KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, \
     _______________DEAD_HALF_ROW_______________,   KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
     ______________MOD_ROW_GACS_L______________,   XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, DRGSCRL, \
-                      ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
+                      ESC_NUM, SPC_NAV,REP_SFT,ENT_SYM,KC_BSPC
 
 #define LAYOUT_LAYER_SYMBOLS                                                                  \
-    KC_DLR, POUND, KC_AMPR, KC_ASTR, KC_CIRC,      KC_PERC, KC_PLUS, KC_GRV, KC_DQT, XXXXXXX, \
+    KC_DLR, POUND, KC_AMPR, KC_ASTR, KC_CIRC,    KC_PERC, KC_PLUS, KC_GRV, KC_DQT, KC_QUOT, \
     KC_LCBR,  KC_RCBR, KC_LPRN, KC_RPRN, KC_AT,  KC_EQL, KC_MINS, KC_COLON, KC_EXLM, KC_PIPE,    \
     HOME_LABK, HOME_RABK,  HOME_LBRC, HOME_RBRC, KC_TILD,  HASH, HOME_UNDS, HOME_SCLN, HOME_QUES, HOME_BSLS, \
-                      ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
+                      ESC_NUM, SPC_NAV,REP_SFT,ENT_SYM,KC_BSPC
 
 #define LAYOUT_LAYER_MEDIA                                                                  \
      XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
      KC_MPRV,  KC_MSTP, KC_MPLY, KC_MNXT, XXXXXXX,_______________DEAD_HALF_ROW_______________, \
      QK_BOOT , EE_CLR, XXXXXXX, XXXXXXX , XXXXXXX,_______________DEAD_HALF_ROW_______________, \
-                      ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
+                      ESC_NUM, SPC_NAV,REP_SFT,ENT_SYM,KC_BSPC
 
 // Define layout
 #define LAYOUT_wrapper(...) LAYOUT_charybdis_3x5(__VA_ARGS__)
@@ -143,6 +143,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 return false;
             }
             break;
+        case REP_SFT:
+            if (record->tap.count && record->event.pressed) {
+                  keyrecord_t press;
+                    press.event.type    = KEY_EVENT;
+                    press.tap.count     = 1;
+                    press.event.pressed = true;
+                    process_repeat_key(QK_REP, &press);
+                    keyrecord_t release;
+                    release.event.type    = KEY_EVENT;
+                    release.tap.count     = 1;
+                    release.event.pressed = false;
+                    process_repeat_key(QK_REP, &release);
+                return false;
+            }
+            break;
     }
 
     if (!process_achordion(keycode, record)) {
@@ -152,6 +167,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     return true;
 }
 
+// This is needed to make rep key work
+bool remember_last_key_user(uint16_t keycode, keyrecord_t* record, uint8_t* remembered_mods) {
+    switch (keycode) {
+        case REP_SFT:
+            return false;  // Ignore this key.
+    }
+    return true;  // Other keys are remembered.
+}
+
 bool is_thumb_or_combo(uint16_t keycode) {
     switch (keycode) {
         case ESC_NUM:
@@ -159,6 +183,7 @@ bool is_thumb_or_combo(uint16_t keycode) {
         case KC_LSFT:
         case ENT_SYM:
         case KC_BSPC:
+        case REP_SFT:
             return true;
             break;
     }
@@ -192,7 +217,7 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
         case ESC_NUM:
         case SPC_NAV:
-        case KC_LSFT:
+        case REP_SFT:
         case ENT_SYM:
         case KC_BSPC:
             return true;
@@ -203,10 +228,10 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t* record) {
 }
 
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-    // FIX: thumb keys not working
     switch (tap_hold_keycode) {
         case ESC_NUM:
         case SPC_NAV:
+        case REP_SFT:
         case KC_LSFT:
         case ENT_SYM:
         case KC_BSPC:
