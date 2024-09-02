@@ -73,9 +73,9 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
                       ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
 
 #define LAYOUT_LAYER_MEDIA                                                                  \
-     XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
-     KC_MPRV,  KC_MSTP, KC_MPLY, KC_MNXT, XXXXXXX,_______________DEAD_HALF_ROW_______________, \
-     QK_BOOT , EE_CLR, XXXXXXX, XXXXXXX , XXXXXXX,_______________DEAD_HALF_ROW_______________, \
+     XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, \
+     KC_MPRV,  KC_MSTP, KC_MPLY, KC_MNXT, XXXXXXX,KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, \
+     QK_BOOT , EE_CLR, XXXXXXX, XXXXXXX , XXXXXXX,KC_F11, KC_F12, KC_F13, KC_F14, KC_F15, \
                       ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
 
 // Define layout
