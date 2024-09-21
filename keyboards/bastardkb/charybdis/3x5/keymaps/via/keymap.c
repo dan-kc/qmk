@@ -42,16 +42,16 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
 #    define SNIPING KC_NO
 #endif // !POINTING_DEVICE_ENABLE
 
+#define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define ______________MOD_ROW_GACS_L______________ KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX
+#define ______________MOD_ROW_GACS_R______________ XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI
+
 // clang-format off
 #define LAYOUT_LAYER_BASE                                                                     \
        KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, QK_REP, \
        KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,  KC_N, KC_E,KC_I, KC_O,    \
        HOME_Z,HOME_X,HOME_C,HOME_D,KC_V,   KC_K ,   HOME_H, HOME_COMM ,HOME_DOT, HOME_SLSH, \
                       ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
-
-#define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define ______________MOD_ROW_GACS_L______________ KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX
-#define ______________MOD_ROW_GACS_R______________ XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI
 
 #define LAYOUT_LAYER_NUMERAL                                                                  \
     _______________DEAD_HALF_ROW_______________,   XXXXXXX,    KC_7,    KC_8,    KC_9, XXXXXXX,  \
@@ -62,8 +62,8 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
 
 #define LAYOUT_LAYER_NAVIGATION                                                               \
     _______________DEAD_HALF_ROW_______________,   KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, \
-    _______________DEAD_HALF_ROW_______________,   KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
-    ______________MOD_ROW_GACS_L______________,   XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, DRGSCRL, \
+    DRGSCRL, KC_BTN3, KC_BTN2, KC_BTN1, XXXXXXX,   KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
+    ______________MOD_ROW_GACS_L______________,   ______________MOD_ROW_GACS_R______________, \
                       ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
 
 #define LAYOUT_LAYER_SYMBOLS                                                                  \
@@ -272,8 +272,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // Combos
 const uint16_t PROGMEM L_U[] = {KC_L, KC_U, COMBO_END};
 const uint16_t PROGMEM U_Y[] = {KC_U, KC_Y, COMBO_END};
+const uint16_t PROGMEM W_F[] = {KC_W, KC_F, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(L_U, KC_TAB),
     COMBO(U_Y, KC_DEL),
+    COMBO(W_F, RGB_TOG),
 };

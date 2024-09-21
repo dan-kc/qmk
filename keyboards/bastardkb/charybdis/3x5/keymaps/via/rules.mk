@@ -3,3 +3,5 @@ COMBO_ENABLE = yes
 BOOTMAGIC_ENABLE = yes
 SRC += features/achordion.c
 REPEAT_KEY_ENABLE = yes
+RGBLIGHT_ENABLE = no
+RGBLIGHT_LIMIT_VAL = 0
