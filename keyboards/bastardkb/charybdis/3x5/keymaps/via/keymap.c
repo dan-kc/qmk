@@ -48,7 +48,7 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
 
 // clang-format off
 #define LAYOUT_LAYER_BASE                                                                     \
-       KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, QK_REP, \
+       KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT, \
        KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,  KC_N, KC_E,KC_I, KC_O,    \
        HOME_Z,HOME_X,HOME_C,HOME_D,KC_V,   KC_K ,   HOME_H, HOME_COMM ,HOME_DOT, HOME_SLSH, \
                       ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
