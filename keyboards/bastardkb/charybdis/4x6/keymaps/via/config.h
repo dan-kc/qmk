@@ -18,8 +18,20 @@
 
 #ifdef VIA_ENABLE
 /* VIA configuration. */
-#    define DYNAMIC_KEYMAP_LAYER_COUNT 4
+#    define DYNAMIC_KEYMAP_LAYER_COUNT 5
 #endif // VIA_ENABLE
+
+// Quick tap etc shouldn't matter on this.
+#define QUICK_TAP_TERM 0
+#define TAPPING_TERM 250 // lower => more holds
+#define PERMISSIVE_HOLD // immediately outputs hold if another key is tapped
+#define COMBO_TERM 20
+#define CHARYBDIS_MINIMUM_DEFAULT_DPI 500 // Must be in increments of 100.
+#define CHARYBDIS_MINIMUM_SNIPING_DPI 500
+#define BOOTMAGIC_LITE_ROW_RIGHT 5
+#define BOOTMAGIC_LITE_COLUMN_RIGHT 5
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
+#define NO_ALT_REPEAT_KEY
 
 #ifndef __arm__
 /* Disable unused features. */

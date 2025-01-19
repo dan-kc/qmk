@@ -67,10 +67,10 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
                       ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
 
 #define LAYOUT_LAYER_SYMBOLS                                                                  \
-    KC_DLR, POUND, KC_AMPR, KC_ASTR, KC_CIRC,    KC_PERC, KC_PLUS, KC_GRV, KC_DQT, KC_QUOT, \
-    KC_LCBR,  KC_RCBR, KC_LPRN, KC_RPRN, KC_AT,  KC_EQL, KC_MINS, KC_COLON, KC_EXLM, KC_PIPE,    \
+    KC_DLR, POUND, KC_AMPR, KC_ASTR, KC_CIRC,             KC_PERC, KC_PLUS, KC_GRV, KC_DQT, KC_QUOT, \
+    KC_LCBR,  KC_RCBR, KC_LPRN, KC_RPRN, KC_AT,           KC_EQL, KC_MINS, KC_COLON, KC_EXLM, KC_PIPE,    \
     HOME_LABK, HOME_RABK,  HOME_LBRC, HOME_RBRC, KC_TILD,  HASH, HOME_UNDS, HOME_SCLN, HOME_QUES, HOME_BSLS, \
-                      ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
+                             ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
 
 #define LAYOUT_LAYER_MEDIA                                                                  \
      XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, \
@@ -259,6 +259,7 @@ void matrix_scan_user(void) {
     }
 }
 #    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+
 #    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
 layer_state_t layer_state_set_user(layer_state_t state) {
     state = update_tri_layer_state(state, LAYER_NUMERAL, LAYER_SYMBOLS, LAYER_MEDIA);
