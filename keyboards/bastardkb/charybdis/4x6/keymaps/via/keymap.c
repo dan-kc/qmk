@@ -58,16 +58,12 @@ static uint16_t auto_pointer_layer_timer = 0;
 #    define S_D_MOD KC_NO
 #    define SNIPING KC_NO
 #endif // !POINTING_DEVICE_ENABLE
-// $#&*^@)(}{<>[]~+%`"|!:-=\?;_
-// using: &*  !? :;  _-
-// taken: "=
-// remaining: $#^@)(}{}<>[]~%+`|\
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-      KC_EQUAL, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_AMPR,    KC_ASTR, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, KC_EXLM,
+      KC_QUES, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_AMPR,    KC_ASTR, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, KC_EXLM,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
         KC_DEL,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,       KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT,  KC_DQT,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
@@ -112,9 +108,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_SYMBOLS] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       KC_CAPS, KC_QUES,    HASH, KC_BSLS, KC_PIPE,  KC_GRV,    XXXXXXX, _______, _______, _______, _______, XXXXXXX,
+       KC_CAPS,   KC_DLR,  POUND, KC_BSLS, KC_PIPE,  KC_GRV,    XXXXXXX, _______, _______, _______, _______, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX,  KC_DLR,   POUND, KC_PLUS, KC_PERC, KC_CIRC,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+       XXXXXXX, KC_EQUAL,   HASH, KC_PLUS, KC_PERC, KC_CIRC,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        XXXXXXX, KC_LCBR, KC_RCBR, KC_LPRN, KC_RPRN,   KC_AT,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
