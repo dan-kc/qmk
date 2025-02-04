@@ -51,7 +51,6 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define L_NUM MO(LAYER_NUMERAL)
 #define L_NAV MO(LAYER_NAVIGATION)
 #define L_SYM MO(LAYER_SYMBOLS)
-#define L_SYM_2 MO(LAYER_SYMBOLS_2)
 
 #ifndef POINTING_DEVICE_ENABLE
 #    define DRGSCRL KC_NO
@@ -66,11 +65,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX,  XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_LALT,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,       KC_J,    KC_L,    KC_U,    KC_Y, KC_BSPC , KC_LALT,
+       KC_LALT,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,       KC_J,    KC_L,    KC_U,    KC_Y, KC_BSPC, KC_LALT,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,       KC_M,    KC_N,    KC_E,    KC_I,    KC_O, KC_LCTL,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_LGUI,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,       KC_K,    KC_H,  KC_COMM,  KC_DOT, L_SYM_2, KC_LGUI,
+       KC_LGUI,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,       KC_K,    KC_H,  KC_COMM,  KC_DOT, KC_ESC, KC_LGUI,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                     L_NUM,   L_NAV, KC_LSFT,      L_SYM, KC_SPC,
                                            XXXXXXX, XXXXXXX,    XXXXXXX
@@ -108,30 +107,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
 
-  [LAYER_SYMBOLS_2] = LAYOUT(
-  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, _______, _______, _______, _______, XXXXXXX,
-  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, KC_CIRC,  KC_GRV,  KC_DQT, KC_QUOT, KC_ASTR,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
-  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX,  KC_DLR, POUND, KC_QUES, KC_EXLM,    KC_AT,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
-  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-         XXXXXXX, KC_SCLN,     CLN, KC_TILD, KC_UNDS, KC_AMPR,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
-  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                  _______, _______, _______,    _______, _______,
-                                           _______, _______,    XXXXXXX
-  //                            ╰───────────────────────────╯ ╰──────────────────╯
-  ),
-
   [LAYER_SYMBOLS] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, _______, _______, _______, _______, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, XXXXXXX, KC_BSLS, KC_PIPE, KC_SLSH, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+       _______,  KC_DLR,   POUND, KC_AMPR, KC_ASTR, KC_CIRC,    KC_PLUS, XXXXXXX,  KC_GRV,  KC_DQT, KC_QUOT, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, KC_LCBR, KC_RCBR, KC_LPRN, KC_RPRN,   XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+       _______, KC_LCBR, KC_RCBR, KC_LPRN, KC_RPRN,   KC_AT,    KC_MINS,     CLN, KC_SCLN, KC_EXLM, KC_QUES, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, KC_LABK, KC_RABK, KC_LBRC, KC_RBRC, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+       _______, KC_LABK, KC_RABK, KC_LBRC, KC_RBRC, KC_TILD,    KC_EQUAL,KC_UNDS, KC_BSLS, KC_PIPE, KC_SLSH, _______,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   _______, _______, _______,    _______, _______,
                                            _______, _______,    XXXXXXX
@@ -140,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_SYSTEM] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       QK_BOOT, KC_MPRV, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,   KC_F10,  KC_F11, KC_F12,  KC_F13,  KC_F13,
+       QK_BOOT, KC_MPRV, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,   KC_F10,  KC_F11, KC_F12,  KC_F13,  XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        _______, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX,    KC_PEQL,   KC_F7,   KC_F8,   KC_F9, XXXXXXX, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
@@ -158,15 +142,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Combos
 const uint16_t PROGMEM COMM_DOT[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM H_COMM[] = {KC_H, KC_COMM, COMBO_END};
-
 const uint16_t PROGMEM X_C_COMBO[] = {KC_X, KC_C, COMBO_END};
-const uint16_t PROGMEM C_D[] = {KC_C, KC_D, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(COMM_DOT, KC_TAB),
     COMBO(H_COMM, KC_ENT),
-
-    COMBO(C_D, KC_ESC),
     COMBO(X_C_COMBO, KC_DEL),
 };
 
