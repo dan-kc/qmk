@@ -1,2 +1,3 @@
+COMBO_ENABLE = yes
 VIA_ENABLE = yes
 BOOTMAGIC_ENABLE = yes
