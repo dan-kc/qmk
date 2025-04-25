@@ -52,13 +52,6 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define L_NAV MO(LAYER_NAVIGATION)
 #define L_SYM MO(LAYER_SYMBOLS)
 
-#ifndef POINTING_DEVICE_ENABLE
-#    define DRGSCRL KC_NO
-#    define DPI_MOD KC_NO
-#    define S_D_MOD KC_NO
-#    define SNIPING KC_NO
-#endif // !POINTING_DEVICE_ENABLE
-
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
@@ -124,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_SYSTEM] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       QK_BOOT, KC_MPRV, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,   KC_F10,  KC_F11, KC_F12,  KC_F13,  XXXXXXX,
+       QK_BOOT, KC_MPRV, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,  KC_F10,  KC_F11,  KC_F12,  KC_F13, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        _______, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX,    KC_PSCR,   KC_F7,   KC_F8,   KC_F9, _______, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤

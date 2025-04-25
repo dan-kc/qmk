@@ -4,34 +4,25 @@
 // Define layers
 enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, LAYER_SYMBOLS, LAYER_MEDIA };
 
-// Thumb keys
-#define SPC_NAV LT(LAYER_NAVIGATION, KC_SPC)
-#define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
-#define ESC_NUM LT(LAYER_NUMERAL, KC_ESC)
-
 // Base layer row mods
-#define HOME_Z LGUI_T(KC_Z)
-#define HOME_X LALT_T(KC_X)
-#define HOME_C LCTL_T(KC_C)
-#define HOME_D LSFT_T(KC_D)
-#define HOME_H RSFT_T(KC_H)
-#define HOME_COMM RCTL_T(KC_COMM)
-#define HOME_DOT RALT_T(KC_DOT)
-#define HOME_SLSH RGUI_T(KC_SLSH)
+#define HRM_Z LGUI_T(KC_Z)
+#define HRM_X LALT_T(KC_X)
+#define HRM_C LCTL_T(KC_C)
+#define HRM_D LSFT_T(KC_D)
+#define HRM_H RSFT_T(KC_H)
+#define HRM_COM RCTL_T(KC_COMM)
+#define HRM_DOT RALT_T(KC_DOT)
+#define HRM_ESC RGUI_T(KC_ESC)
 
-// Symbols layer row mods
-#define HOME_LABK LGUI_T(KC_LABK)
-#define HOME_RABK LALT_T(KC_RABK)
-#define HOME_LBRC LCTL_T(KC_LBRC)
-#define HOME_RBRC LSFT_T(KC_RBRC)
-#define HOME_UNDS RSFT_T(KC_UNDS)
-#define HOME_SCLN RCTL_T(KC_SCLN)
-#define HOME_QUES RALT_T(KC_QUES)
-#define HOME_BSLS RGUI_T(KC_BSLS)
+// Thumb keys
+#define L_NUM MO(LAYER_NUMERAL)
+#define L_NAV MO(LAYER_NAVIGATION)
+#define L_SYM MO(LAYER_SYMBOLS)
 
 // Misc
 #define HASH LALT(KC_3)
 #define POUND KC_HASH
+#define CLN LSFT(KC_SCLN)
 
 // enable auto sniping
 #define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_NAVIGATION
@@ -43,40 +34,65 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
 #endif // !POINTING_DEVICE_ENABLE
 
 #define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define ______________MOD_ROW_GACS_L______________ KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX
-#define ______________MOD_ROW_GACS_R______________ XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI
+#define _______________MOD_ROW_GACS_L______________ KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX
+#define _______________MOD_ROW_GACS_R______________ XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI
 
 // clang-format off
-#define LAYOUT_LAYER_BASE                                                                     \
-       KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y, KC_QUOT, \
-       KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,  KC_N, KC_E,KC_I, KC_O,    \
-       HOME_Z,HOME_X,HOME_C,HOME_D,KC_V,   KC_K ,   HOME_H, HOME_COMM ,HOME_DOT, HOME_SLSH, \
-                      ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
+#define LAYOUT_LAYER_BASE                                                                                  \
+  /* ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮ */    \
+          KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,       KC_J,    KC_L,    KC_U,    KC_Y, KC_BSPC,        \
+  /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
+          KC_A,    KC_R,    KC_S,    KC_T,    KC_G,       KC_M,    KC_N,    KC_E,    KC_I,    KC_O,        \
+  /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
+         HRM_Z,   HRM_X,   HRM_C,   HRM_D,    KC_V,       KC_K,   HRM_H, HRM_COM, HRM_DOT, HRM_ESC,        \
+  /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
+                           L_NUM,   L_NAV, KC_LSFT,      L_SYM,  KC_SPC
+  /*                   ╰───────────────────────────╯ ╰──────────────────╯                            */
 
-#define LAYOUT_LAYER_NUMERAL                                                                  \
-    _______________DEAD_HALF_ROW_______________,   XXXXXXX,    KC_7,    KC_8,    KC_9, XXXXXXX,  \
-    _______________DEAD_HALF_ROW_______________,   XXXXXXX,    KC_4,    KC_5,    KC_6, XXXXXXX, \
-    ______________MOD_ROW_GACS_L______________,   KC_0,       KC_1,    KC_2,    KC_3, XXXXXXX, \
-                      ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
 
+#define LAYOUT_LAYER_NUMERAL                                                                               \
+  /* ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮ */    \
+       _______________DEAD_HALF_ROW_______________,    KC_PERC,    KC_7,    KC_8,    KC_9, _______,        \
+  /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
+       _______________DEAD_HALF_ROW_______________,       HASH,    KC_4,    KC_5,    KC_6, XXXXXXX,        \
+  /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
+       _______________MOD_ROW_GACS_L______________,       KC_0,    KC_1,    KC_2,    KC_3, _______,        \
+  /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
+                         XXXXXXX, _______, _______,    _______, _______
+  /*                   ╰───────────────────────────╯ ╰──────────────────╯                            */
 
-#define LAYOUT_LAYER_NAVIGATION                                                               \
-    _______________DEAD_HALF_ROW_______________,   KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, \
-    DRGSCRL, KC_BTN3, KC_BTN2, KC_BTN1, XXXXXXX,   KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
-    ______________MOD_ROW_GACS_L______________,   ______________MOD_ROW_GACS_R______________, \
-                      ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
+#define LAYOUT_LAYER_NAVIGATION                                                                            \
+  /* ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮ */    \
+       _______________DEAD_HALF_ROW_______________,    KC_HOME,  KC_INS, KC_PGDN, KC_PGUP, _______,        \
+  /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
+       DRGSCRL, KC_BTN3, KC_BTN2, KC_BTN1, XXXXXXX,    KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,        \
+  /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
+       _______________DEAD_HALF_ROW_______________,    _______________MOD_ROW_GACS_R______________,        \
+  /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
+                         _______, XXXXXXX, _______,    _______, _______
+  /*                   ╰───────────────────────────╯ ╰──────────────────╯                            */
 
-#define LAYOUT_LAYER_SYMBOLS                                                                  \
-    KC_DLR, POUND, KC_AMPR, KC_ASTR, KC_CIRC,             KC_PERC, KC_PLUS, KC_GRV, KC_DQT, KC_QUOT, \
-    KC_LCBR,  KC_RCBR, KC_LPRN, KC_RPRN, KC_AT,           KC_EQL, KC_MINS, KC_COLON, KC_EXLM, KC_PIPE,    \
-    HOME_LABK, HOME_RABK,  HOME_LBRC, HOME_RBRC, KC_TILD,  HASH, HOME_UNDS, HOME_SCLN, HOME_QUES, HOME_BSLS, \
-                             ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
+#define LAYOUT_LAYER_SYMBOLS                                                                               \
+  /* ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮ */    \
+        KC_DLR,   POUND, KC_AMPR, KC_ASTR, KC_CIRC,    KC_PLUS, XXXXXXX,  KC_QUOT, KC_DQT, _______,        \
+  /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
+       KC_LCBR, KC_RCBR, KC_LPRN, KC_RPRN,   KC_AT,    KC_MINS,     CLN, KC_SCLN, KC_EXLM, KC_QUES,        \
+  /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
+       KC_LABK, KC_RABK, KC_LBRC, KC_RBRC, KC_TILD,    KC_EQUAL,KC_UNDS, KC_SLSH, KC_PIPE, _______,        \
+  /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
+                         _______, _______, _______,    XXXXXXX, _______
+  /*                   ╰───────────────────────────╯ ╰──────────────────╯                            */
 
-#define LAYOUT_LAYER_MEDIA                                                                  \
-     XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, \
-     KC_MPRV,  KC_MSTP, KC_MPLY, KC_MNXT, XXXXXXX,KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, \
-     QK_BOOT , EE_CLR, XXXXXXX, XXXXXXX , XXXXXXX,KC_F11, KC_F12, KC_F13, KC_F14, KC_F15, \
-                      ESC_NUM, SPC_NAV,KC_LSFT,ENT_SYM,KC_BSPC
+#define LAYOUT_LAYER_MEDIA                                                                                 \
+  /* ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮ */    \
+       KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX,    KC_PSCR,   KC_F7,   KC_F8,   KC_F9, _______,        \
+  /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
+       KC_MSTP, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX,    KC_PEQL,   KC_F4,   KC_F5,   KC_F6, XXXXXXX,        \
+  /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
+       EE_CLR,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_PDOT,   KC_F1,   KC_F2,   KC_F3, _______,        \
+  /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
+                         XXXXXXX, _______, _______,    XXXXXXX, _______
+  /*                   ╰───────────────────────────╯ ╰──────────────────╯                            */
 
 // Define layout
 #define LAYOUT_wrapper(...) LAYOUT_charybdis_3x5(__VA_ARGS__)
@@ -90,9 +106,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    const bool is_tapped = record->tap.count && record->event.pressed;
+    // const bool is_tapped = record->tap.count && record->event.pressed;
     // tap.count is 0 if held, otherwise it is considered tapped
-    switch (keycode) {
+    // switch (keycode) {
         // FIX: QMK does not allow some of these, so we need to override some behaviours
         // left side
         //   keyrecord_t record {
@@ -113,57 +129,65 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         //         return false;
         //     }
         //     return false;
-        case HOME_LABK:
-            if (is_tapped) {
-                tap_code16(KC_LABK);
-                return false;
-            }
-            break;
-        case HOME_RABK:
-            if (is_tapped) {
-                tap_code16(KC_RABK);
-                return false;
-            }
-            break;
-        case HOME_LBRC:
-            if (is_tapped) {
-                tap_code16(KC_LBRC);
-                return false;
-            }
-            break;
-        case HOME_RBRC:
-            if (is_tapped) {
-                tap_code16(KC_RBRC);
-                return false;
-            }
-            break;
-
-        case HOME_UNDS:
-            if (is_tapped) {
-                tap_code16(KC_UNDS);
-                return false;
-            }
-            break;
-        case HOME_SCLN:
-            if (is_tapped) {
-                tap_code16(KC_SCLN);
-                return false;
-            }
-            break;
-        case HOME_QUES:
-            if (is_tapped) {
-                tap_code16(KC_QUES);
-                return false;
-            }
-            break;
-        case HOME_BSLS:
-            if (is_tapped) {
-                tap_code16(KC_BSLS);
-                return false;
-            }
-            break;
-    }
-
+// #define LGUI_T(KC_Z)
+// #define HRM_X LALT_T(KC_X)
+// #define HRM_C LCTL_T(KC_C)
+// #define HRM_D LSFT_T(KC_D)
+// #define HRM_H RSFT_T(KC_H)
+// #define HRM_COM RCTL_T(KC_COMM)
+// #define HRM_DOT RALT_T(KC_DOT)
+// #define HRM_ESC RGUI_T(KC_SLSH)
+//         case HRM_Z :
+//             if (is_tapped) {
+//                 tap_code16(KC_LABK);
+//                 return false;
+//             }
+//             break;
+//         case HRM_RABK:
+//             if (is_tapped) {
+//                 tap_code16(KC_RABK);
+//                 return false;
+//             }
+//             break;
+//         case HRM_LBRC:
+//             if (is_tapped) {
+//                 tap_code16(KC_LBRC);
+//                 return false;
+//             }
+//             break;
+//         case HRM_RBRC:
+//             if (is_tapped) {
+//                 tap_code16(KC_RBRC);
+//                 return false;
+//             }
+//             break;
+//
+//         case HRM_UNDS:
+//             if (is_tapped) {
+//                 tap_code16(KC_UNDS);
+//                 return false;
+//             }
+//             break;
+//         case HRM_SCLN:
+//             if (is_tapped) {
+//                 tap_code16(KC_SCLN);
+//                 return false;
+//             }
+//             break;
+//         case HRM_QUES:
+//             if (is_tapped) {
+//                 tap_code16(KC_QUES);
+//                 return false;
+//             }
+//             break;
+//         case HRM_BSLS:
+//             if (is_tapped) {
+//                 tap_code16(KC_BSLS);
+//                 return false;
+//             }
+//             break;
+//     }
+//
     if (!process_achordion(keycode, record)) {
         return false;
     }
@@ -173,11 +197,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
 bool is_thumb_or_combo(uint16_t keycode) {
     switch (keycode) {
-        case ESC_NUM:
-        case SPC_NAV:
+        case L_NUM:
+        case L_NAV:
         case KC_LSFT:
-        case ENT_SYM:
-        case KC_BSPC:
+        case L_SYM:
+        case KC_SPC:
             return true;
             break;
     }
@@ -190,14 +214,14 @@ bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, ui
     // are on the same hand in Colemak.
     switch (tap_hold_keycode) {
         // the following allows same hand modifiers and thumb keys e.g. cmd space
-        case HOME_Z:
-        case HOME_X:
-        case HOME_C:
-        case HOME_D:
-        case HOME_H:
-        case HOME_COMM:
-        case HOME_DOT:
-        case HOME_SLSH:
+        case HRM_Z:
+        case HRM_X:
+        case HRM_C:
+        case HRM_D:
+        case HRM_H:
+        case HRM_COM:
+        case HRM_DOT:
+        case HRM_ESC:
             if (is_thumb_or_combo(other_keycode)) {
                 return true;
             }
@@ -209,10 +233,10 @@ bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, ui
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
-        case ESC_NUM:
-        case SPC_NAV:
-        case ENT_SYM:
-        case KC_BSPC:
+        case L_NUM:
+        case L_NAV:
+        case L_SYM:
+        case KC_SPC:
             return true;
         default:
             // Do not select the hold action when another key is pressed.
@@ -222,11 +246,10 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t* record) {
 
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
     switch (tap_hold_keycode) {
-        case ESC_NUM:
-        case SPC_NAV:
-        case KC_LSFT:
-        case ENT_SYM:
-        case KC_BSPC:
+        case L_NUM:
+        case L_NAV:
+        case L_SYM:
+        case KC_SPC:
             return 0; // Bypass Achordion for these keys.
     }
     return 800;
@@ -271,12 +294,16 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #endif     // POINTING_DEVICE_ENABLE
 
 // Combos
-const uint16_t PROGMEM L_U[] = {KC_L, KC_U, COMBO_END};
-const uint16_t PROGMEM U_Y[] = {KC_U, KC_Y, COMBO_END};
-const uint16_t PROGMEM W_F[] = {KC_W, KC_F, COMBO_END};
-
+// const uint16_t PROGMEM COMM_DOT[] = {KC_COMM, KC_DOT, COMBO_END};
+// const uint16_t PROGMEM H_COMM[] = {KC_H, KC_COMM, COMBO_END};
+const uint16_t PROGMEM X_C_COMBO[] = {KC_Q, KC_W, COMBO_END};
+// const uint16_t PROGMEM QUOT_DQT_COMBO[] = {KC_QUOT, KC_DQT, COMBO_END};
+// const uint16_t PROGMEM SLSH_PIPE_COMBO[] = {KC_SLSH, KC_PIPE, COMBO_END};
+//
 combo_t key_combos[] = {
-    COMBO(L_U, KC_TAB),
-    COMBO(U_Y, KC_DEL),
-    COMBO(W_F, RGB_TOG),
+    // COMBO(COMM_DOT, KC_TAB),
+    // COMBO(H_COMM, KC_ENT),
+    COMBO(X_C_COMBO, KC_DEL),
+    // COMBO(QUOT_DQT_COMBO, KC_GRV),
+    // COMBO(SLSH_PIPE_COMBO, KC_BSLS),
 };
