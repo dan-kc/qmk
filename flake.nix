@@ -11,7 +11,7 @@
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = [
           pkgs.qmk
-          pkgs.dfu-util # Or other flashing tools
+          pkgs.dfu-util
           pkgs.udev
           pkgs.python313Packages.appdirs
         ];

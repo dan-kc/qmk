@@ -52,9 +52,9 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
 
 #define LAYOUT_LAYER_NUMERAL                                                                               \
   /* ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮ */    \
-       _______________DEAD_HALF_ROW_______________,    KC_PERC,    KC_7,    KC_8,    KC_9, _______,        \
+       _______________DEAD_HALF_ROW_______________,     KC_DEL,    KC_7,    KC_8,    KC_9, _______,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
-       _______________DEAD_HALF_ROW_______________,       HASH,    KC_4,    KC_5,    KC_6, XXXXXXX,        \
+       _______________DEAD_HALF_ROW_______________,     KC_TAB,    KC_4,    KC_5,    KC_6,  KC_ENT,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
        _______________MOD_ROW_GACS_L______________,       KC_0,    KC_1,    KC_2,    KC_3, _______,        \
   /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
@@ -74,11 +74,11 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
 
 #define LAYOUT_LAYER_SYMBOLS                                                                               \
   /* ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮ */    \
-        KC_DLR,   POUND, KC_AMPR, KC_ASTR, KC_CIRC,    KC_PLUS, XXXXXXX,  KC_QUOT, KC_DQT, _______,        \
+        KC_DLR,   POUND, KC_AMPR, KC_ASTR, KC_CIRC,    KC_PLUS, KC_PERC,  KC_QUOT, KC_DQT,  KC_GRV,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
        KC_LCBR, KC_RCBR, KC_LPRN, KC_RPRN,   KC_AT,    KC_MINS,     CLN, KC_SCLN, KC_EXLM, KC_QUES,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
-       KC_LABK, KC_RABK, KC_LBRC, KC_RBRC, KC_TILD,    KC_EQUAL,KC_UNDS, KC_SLSH, KC_PIPE, _______,        \
+       KC_LABK, KC_RABK, KC_LBRC, KC_RBRC, KC_TILD,    KC_EQUAL,KC_UNDS, KC_SLSH, KC_PIPE, KC_BSLS,        \
   /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
                          _______, _______, _______,    XXXXXXX, _______
   /*                   ╰───────────────────────────╯ ╰──────────────────╯                            */
@@ -106,88 +106,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    // const bool is_tapped = record->tap.count && record->event.pressed;
-    // tap.count is 0 if held, otherwise it is considered tapped
-    // switch (keycode) {
-        // FIX: QMK does not allow some of these, so we need to override some behaviours
-        // left side
-        //   keyrecord_t record {
-        //   keyevent_t event {
-        //     keypos_t key {
-        //       uint8_t col
-        //       uint8_t row
-        //     }
-        //     bool     pressed (Down or up)
-        //     uint16_t time
-        //   }
-        // }/
-        // case KC_N:
-        //                     process_altrep2(get_last_keycode(), get_last_mods());
-        //
-        //     if (record->event.pressed) {
-        //         tap_code16(KC_N);
-        //         return false;
-        //     }
-        //     return false;
-// #define LGUI_T(KC_Z)
-// #define HRM_X LALT_T(KC_X)
-// #define HRM_C LCTL_T(KC_C)
-// #define HRM_D LSFT_T(KC_D)
-// #define HRM_H RSFT_T(KC_H)
-// #define HRM_COM RCTL_T(KC_COMM)
-// #define HRM_DOT RALT_T(KC_DOT)
-// #define HRM_ESC RGUI_T(KC_SLSH)
-//         case HRM_Z :
-//             if (is_tapped) {
-//                 tap_code16(KC_LABK);
-//                 return false;
-//             }
-//             break;
-//         case HRM_RABK:
-//             if (is_tapped) {
-//                 tap_code16(KC_RABK);
-//                 return false;
-//             }
-//             break;
-//         case HRM_LBRC:
-//             if (is_tapped) {
-//                 tap_code16(KC_LBRC);
-//                 return false;
-//             }
-//             break;
-//         case HRM_RBRC:
-//             if (is_tapped) {
-//                 tap_code16(KC_RBRC);
-//                 return false;
-//             }
-//             break;
-//
-//         case HRM_UNDS:
-//             if (is_tapped) {
-//                 tap_code16(KC_UNDS);
-//                 return false;
-//             }
-//             break;
-//         case HRM_SCLN:
-//             if (is_tapped) {
-//                 tap_code16(KC_SCLN);
-//                 return false;
-//             }
-//             break;
-//         case HRM_QUES:
-//             if (is_tapped) {
-//                 tap_code16(KC_QUES);
-//                 return false;
-//             }
-//             break;
-//         case HRM_BSLS:
-//             if (is_tapped) {
-//                 tap_code16(KC_BSLS);
-//                 return false;
-//             }
-//             break;
-//     }
-//
     if (!process_achordion(keycode, record)) {
         return false;
     }
@@ -292,18 +210,3 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 #    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
 #endif     // POINTING_DEVICE_ENABLE
-
-// Combos
-// const uint16_t PROGMEM COMM_DOT[] = {KC_COMM, KC_DOT, COMBO_END};
-// const uint16_t PROGMEM H_COMM[] = {KC_H, KC_COMM, COMBO_END};
-const uint16_t PROGMEM X_C_COMBO[] = {KC_Q, KC_W, COMBO_END};
-// const uint16_t PROGMEM QUOT_DQT_COMBO[] = {KC_QUOT, KC_DQT, COMBO_END};
-// const uint16_t PROGMEM SLSH_PIPE_COMBO[] = {KC_SLSH, KC_PIPE, COMBO_END};
-//
-combo_t key_combos[] = {
-    // COMBO(COMM_DOT, KC_TAB),
-    // COMBO(H_COMM, KC_ENT),
-    COMBO(X_C_COMBO, KC_DEL),
-    // COMBO(QUOT_DQT_COMBO, KC_GRV),
-    // COMBO(SLSH_PIPE_COMBO, KC_BSLS),
-};
