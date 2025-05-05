@@ -25,9 +25,9 @@
 #define TAPPING_TERM 250 // lower => more holds
 #define PERMISSIVE_HOLD // immediately outputs hold if another key is tapped
 #define CHARYBDIS_MINIMUM_DEFAULT_DPI 800
+#define CHARYBDIS_MINIMUM_SNIPING_DPI 400
 #define BOOTMAGIC_LITE_ROW_RIGHT 4
 #define BOOTMAGIC_LITE_COLUMN_RIGHT 4
-#define CHARYBDIS_MINIMUM_SNIPING_DPI 400
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 #define NO_ALT_REPEAT_KEY
 
