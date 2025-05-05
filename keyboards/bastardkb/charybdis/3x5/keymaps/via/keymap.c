@@ -17,7 +17,7 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
 // Thumb keys
 #define L_NUM MO(LAYER_NUMERAL)
 #define L_NAV MO(LAYER_NAVIGATION)
-#define L_SYM MO(LAYER_SYMBOLS)
+#define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
 
 // Misc
 #define HASH LALT(KC_3)
@@ -46,28 +46,27 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
          HRM_Z,   HRM_X,   HRM_C,   HRM_D,    KC_V,       KC_K,   HRM_H, HRM_COM, HRM_DOT, HRM_ESC,        \
   /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
-                           L_NUM,   L_NAV, KC_LSFT,      L_SYM,  KC_SPC
+                           L_NUM,   L_NAV, KC_LSFT,    ENT_SYM,  KC_SPC
   /*                   ╰───────────────────────────╯ ╰──────────────────╯                            */
-
 
 #define LAYOUT_LAYER_NUMERAL                                                                               \
   /* ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮ */    \
        _______________DEAD_HALF_ROW_______________,     KC_DEL,    KC_7,    KC_8,    KC_9, _______,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
-       _______________DEAD_HALF_ROW_______________,     KC_TAB,    KC_4,    KC_5,    KC_6,  KC_ENT,        \
+       _______________DEAD_HALF_ROW_______________,     KC_TAB,    KC_4,    KC_5,    KC_6, XXXXXXX,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
        _______________MOD_ROW_GACS_L______________,       KC_0,    KC_1,    KC_2,    KC_3, _______,        \
   /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
-                         XXXXXXX, _______, _______,    _______, _______
+                         XXXXXXX, _______, _______,    _______,  _______
   /*                   ╰───────────────────────────╯ ╰──────────────────╯                            */
 
 #define LAYOUT_LAYER_NAVIGATION                                                                            \
   /* ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮ */    \
        _______________DEAD_HALF_ROW_______________,    KC_HOME,  KC_INS, KC_PGDN, KC_PGUP, _______,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
-       DRGSCRL, KC_BTN3, KC_BTN2, KC_BTN1, XXXXXXX,    KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,        \
+       DRGSCRL, KC_BTN3, KC_BTN2, KC_BTN1, XXXXXXX,    XXXXXXX, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
-       _______________DEAD_HALF_ROW_______________,    _______________MOD_ROW_GACS_R______________,        \
+       _______________MOD_ROW_GACS_L______________,    _______________MOD_ROW_GACS_R______________,        \
   /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
                          _______, XXXXXXX, _______,    _______, _______
   /*                   ╰───────────────────────────╯ ╰──────────────────╯                            */
@@ -118,7 +117,7 @@ bool is_thumb_or_combo(uint16_t keycode) {
         case L_NUM:
         case L_NAV:
         case KC_LSFT:
-        case L_SYM:
+        case ENT_SYM:
         case KC_SPC:
             return true;
             break;
@@ -153,7 +152,7 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
         case L_NUM:
         case L_NAV:
-        case L_SYM:
+        case ENT_SYM:
         case KC_SPC:
             return true;
         default:
@@ -166,7 +165,7 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
     switch (tap_hold_keycode) {
         case L_NUM:
         case L_NAV:
-        case L_SYM:
+        case ENT_SYM:
         case KC_SPC:
             return 0; // Bypass Achordion for these keys.
     }
