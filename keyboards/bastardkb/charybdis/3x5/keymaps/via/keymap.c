@@ -62,7 +62,7 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
 
 #define LAYOUT_LAYER_NAVIGATION                                                                            \
   /* ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮ */    \
-       _______________DEAD_HALF_ROW_______________,    KC_HOME,  KC_INS, KC_PGDN, KC_PGUP, _______,        \
+       _______________DEAD_HALF_ROW_______________,     KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
        DRGSCRL, KC_BTN3, KC_BTN2, KC_BTN1, XXXXXXX,    XXXXXXX, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
@@ -88,7 +88,7 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
        KC_MSTP, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX,    KC_PEQL,   KC_F4,   KC_F5,   KC_F6, XXXXXXX,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
-       EE_CLR,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_PDOT,   KC_F1,   KC_F2,   KC_F3, _______,        \
+       _______________MOD_ROW_GACS_L______________,    KC_PDOT,   KC_F1,   KC_F2,   KC_F3, _______,        \
   /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
                          XXXXXXX, _______, _______,    XXXXXXX, _______
   /*                   ╰───────────────────────────╯ ╰──────────────────╯                            */
