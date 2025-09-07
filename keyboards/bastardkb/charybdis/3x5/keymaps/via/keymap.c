@@ -12,12 +12,12 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
 #define HRM_H RSFT_T(KC_H)
 #define HRM_COM RCTL_T(KC_COMM)
 #define HRM_DOT RALT_T(KC_DOT)
-#define HRM_ESC RGUI_T(KC_ESC)
+#define HRM_ENT RGUI_T(KC_ENT)
 
 // Thumb keys
-#define L_NUM MO(LAYER_NUMERAL)
-#define L_NAV MO(LAYER_NAVIGATION)
-#define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
+#define SYM MO(LAYER_SYMBOLS)
+#define NUM_ESC LT(LAYER_NUMERAL, KC_ESC)
+#define NAV_TAB LT(LAYER_NAVIGATION, KC_TAB)
 
 // Misc
 #define HASH LALT(KC_3)
@@ -44,18 +44,18 @@ enum charybdis_keymap_layers { LAYER_BASE = 0, LAYER_NUMERAL, LAYER_NAVIGATION, 
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
           KC_A,    KC_R,    KC_S,    KC_T,    KC_G,       KC_M,    KC_N,    KC_E,    KC_I,    KC_O,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
-         HRM_Z,   HRM_X,   HRM_C,   HRM_D,    KC_V,       KC_K,   HRM_H, HRM_COM, HRM_DOT, HRM_ESC,        \
+         HRM_Z,   HRM_X,   HRM_C,   HRM_D,    KC_V,       KC_K,   HRM_H, HRM_COM, HRM_DOT, HRM_ENT,        \
   /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
-                           L_NUM,   L_NAV, KC_LSFT,    ENT_SYM,  KC_SPC
+                         NUM_ESC, NAV_TAB, KC_LSFT,    SYM,  KC_SPC
   /*                   ╰───────────────────────────╯ ╰──────────────────╯                            */
 
 #define LAYOUT_LAYER_NUMERAL                                                                               \
   /* ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮ */    \
        _______________DEAD_HALF_ROW_______________,     KC_DEL,    KC_7,    KC_8,    KC_9, _______,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
-       _______________DEAD_HALF_ROW_______________,     KC_TAB,    KC_4,    KC_5,    KC_6, XXXXXXX,        \
+       _______________DEAD_HALF_ROW_______________,    XXXXXXX,    KC_4,    KC_5,    KC_6, XXXXXXX,        \
   /* ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤ */    \
-       _______________MOD_ROW_GACS_L______________,       KC_0,    KC_1,    KC_2,    KC_3, _______,        \
+       _______________DEAD_HALF_ROW_______________,       KC_0,    KC_1,    KC_2,    KC_3, _______,        \
   /* ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯ */    \
                          XXXXXXX, _______, _______,    _______,  _______
   /*                   ╰───────────────────────────╯ ╰──────────────────╯                            */
@@ -114,10 +114,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
 bool is_thumb_or_combo(uint16_t keycode) {
     switch (keycode) {
-        case L_NUM:
-        case L_NAV:
+        case NUM_ESC:
+        case NAV_TAB:
         case KC_LSFT:
-        case ENT_SYM:
+        case SYM:
         case KC_SPC:
             return true;
             break;
@@ -138,7 +138,7 @@ bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, ui
         case HRM_H:
         case HRM_COM:
         case HRM_DOT:
-        case HRM_ESC:
+        case HRM_ENT:
             if (is_thumb_or_combo(other_keycode)) {
                 return true;
             }
@@ -150,9 +150,9 @@ bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, ui
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
-        case L_NUM:
-        case L_NAV:
-        case ENT_SYM:
+        case NUM_ESC:
+        case NAV_TAB:
+        case SYM:
         case KC_SPC:
             return true;
         default:
@@ -163,9 +163,9 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t* record) {
 
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
     switch (tap_hold_keycode) {
-        case L_NUM:
-        case L_NAV:
-        case ENT_SYM:
+        case NUM_ESC:
+        case NAV_TAB:
+        case SYM:
         case KC_SPC:
             return 0; // Bypass Achordion for these keys.
     }

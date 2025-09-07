@@ -9,6 +9,7 @@
     in
     {
       devShells.${system}.default = pkgs.mkShell {
+# qmk flash -c -kb bastardkb/charybdis/3x5/v2/splinky_3 -km via
         buildInputs = [
           pkgs.qmk
           pkgs.dfu-util
