@@ -21,11 +21,18 @@
 #    define DYNAMIC_KEYMAP_LAYER_COUNT 7
 #endif // VIA_ENABLE
 
+#define FLOW_TAP_TERM 150
 #define QUICK_TAP_TERM 0
-#define TAPPING_TERM 250 // lower => more holds
+#define TAPPING_TERM 400 // lower => more holds
 #define PERMISSIVE_HOLD // immediately outputs hold if another key is tapped
+
+// For newest
 #define CHARYBDIS_MINIMUM_DEFAULT_DPI 600
 #define CHARYBDIS_MINIMUM_SNIPING_DPI 600
+// For Kangaroo
+// #define CHARYBDIS_MINIMUM_DEFAULT_DPI 200
+// #define CHARYBDIS_MINIMUM_SNIPING_DPI 200
+
 #define BOOTMAGIC_LITE_ROW_RIGHT 4
 #define BOOTMAGIC_LITE_COLUMN_RIGHT 4
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
