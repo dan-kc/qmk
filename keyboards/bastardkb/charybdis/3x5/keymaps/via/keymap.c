@@ -209,3 +209,14 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 #    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
 #endif     // POINTING_DEVICE_ENABLE
+
+// Combo stuff
+const uint16_t PROGMEM B_J[] = {KC_B, KC_J, COMBO_END};
+const uint16_t PROGMEM G_M[] = {KC_G, KC_M, COMBO_END};
+const uint16_t PROGMEM V_K[] = {KC_V, KC_K, COMBO_END};
+
+combo_t key_combos[] = {
+    COMBO(B_J, KC_TAB),
+    COMBO(G_M, KC_DEL),
+    COMBO(V_K, KC_ESC),
+};
