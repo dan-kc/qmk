@@ -37,8 +37,8 @@ enum charybdis_keymap_layers {
 
 // Thumb keys
 #define SYM MO(LAYER_SYMBOLS)
-#define NUM_ESC LT(LAYER_NUMERAL, KC_ESC)
-#define NAV_TAB LT(LAYER_NAVIGATION, KC_TAB)
+#define NUM MO(LAYER_NUMERAL)
+#define NAV MO(LAYER_NAVIGATION)
 
 // Misc
 #define HASH LALT(KC_3)
@@ -55,15 +55,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
          HRM_Z,   HRM_X,   HRM_C,   HRM_D,    KC_V,       KC_K,   HRM_H, HRM_COM, HRM_DOT, HRM_ENT,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         NUM_ESC, NAV_TAB, KC_LSFT,        SYM,  KC_SPC
+                             NUM,     NAV, KC_LSFT,        SYM,  KC_SPC
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
   [LAYER_NUMERAL] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     KC_DEL,    KC_7,    KC_8,    KC_9, _______,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,    KC_7,    KC_8,    KC_9, _______,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,    KC_4,    KC_5,    KC_6, XXXXXXX,
+       XXXXXXX,  KC_DEL,  KC_TAB,  KC_ESC, XXXXXXX,    XXXXXXX,    KC_4,    KC_5,    KC_6, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,       KC_0,    KC_1,    KC_2,    KC_3, _______,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
