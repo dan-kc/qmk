@@ -21,7 +21,7 @@
             "pin": "GP1"
         },
         "bootmagic": {
-            "matrix": [4, 0]
+            "matrix": [4, 4]
         }
     },
     "features": {
