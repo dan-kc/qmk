@@ -116,3 +116,8 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
         'L','L','L','L','L','R','R','R','R','R',
                      '*','*','*', '*','*'
     );
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    state = update_tri_layer_state(state, LAYER_NUMERAL, LAYER_SYMBOLS, LAYER_MEDIA);
+    return state;
+}
