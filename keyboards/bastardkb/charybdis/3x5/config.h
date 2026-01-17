@@ -46,6 +46,9 @@
 #define CHARYBDIS_MINIMUM_DEFAULT_DPI 400
 #define CHARYBDIS_MINIMUM_SNIPING_DPI 400
 
-#define TAPPING_TERM 400 // lower => more holds
-#define PERMISSIVE_HOLD
+#define TAPPING_TERM 150 // lower => more holds
+// Not sure if I ever want permissive hold.
+// I think in an ideal world I would have CHORDAL_HOLD and no permissive hold.
+// However CHORDAL_HOLD does not appear to work without permissive hold
+// #define PERMISSIVE_HOLD
 #define CHORDAL_HOLD
