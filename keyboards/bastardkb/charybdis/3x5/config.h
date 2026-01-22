@@ -47,8 +47,9 @@
 #define CHARYBDIS_MINIMUM_SNIPING_DPI 400
 
 #define TAPPING_TERM 150 // lower => more holds
-// Not sure if I ever want permissive hold.
-// I think in an ideal world I would have CHORDAL_HOLD and no permissive hold.
-// However CHORDAL_HOLD does not appear to work without permissive hold
 // #define PERMISSIVE_HOLD
-#define CHORDAL_HOLD
+
+// Chordal does not work past the tapping term. If a mod key is settled as
+// "HOLD" then it will allow same side-taps. Therefore it does not do
+// anything without PERMISSIVE_HOLD applied too
+// #define CHORDAL_HOLD
