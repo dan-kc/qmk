@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_SYMBOLS] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-        KC_DLR,   POUND, KC_AMPR, KC_ASTR, KC_CIRC,    KC_PLUS, KC_PERC,  KC_QUOT, KC_DQT,  KC_GRV,
+        KC_DLR,   POUND, KC_AMPR, KC_ASTR, KC_CIRC,    KC_PLUS, KC_PERC, KC_QUOT,  KC_DQT,  KC_GRV,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_LCBR, KC_RCBR, KC_LPRN, KC_RPRN,   KC_AT,    KC_MINS,     CLN, KC_SCLN, KC_EXLM, KC_QUES,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
